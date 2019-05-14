@@ -1,5 +1,8 @@
-# vagrant-base
-My base vagrant setup
+# vagrant-workspace
+My vagrant workspace
+
+# Variants
+Refer to the other branches to use the variants.
 
 # Basic customization
 * `config/dev.yml`: add this for custom config variables
