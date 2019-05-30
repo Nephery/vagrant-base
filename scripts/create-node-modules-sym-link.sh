@@ -1,3 +1,5 @@
+#!/bin/bash
+
 NPM_MODULES="$HOME/npm_modules"
 LN_NODE_MODULES="$PWD/node_modules"
 RL_NODE_MODULES="$NPM_MODULES/${PWD##*/}/node_modules"

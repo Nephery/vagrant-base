@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 
 if [ -f "$HOME/.provisioning_lock" ]; then
