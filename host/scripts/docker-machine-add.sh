@@ -15,13 +15,17 @@ ip="$(cd "$vagrantfile_path" && vagrant status | grep -oE 'private_net_ip"=>"[^"
 existing_machines="$(docker-machine ls | tail -n +2)"
 
 if [ -n "$(echo "$existing_machines" | awk '{print $1}' | grep "^${machine_alias}$")" ]; then
-	>&2 echo "Docker-machine alias $machine_alias is already in use"
-	>&2 echo
-	exit 1
+	>&2 echo "Docker-machine alias $machine_alias is already in use. Delete it?"
+	select yn in "Yes" "No"; do
+		case $yn in
+			Yes ) docker-machine rm "$machine_alias" && break;;
+			No ) exit 1;;
+		esac
+	done
 fi
 
 if [ -n "$(echo "$existing_machines" | awk '{print $5}' | grep -w "${ip}")" ]; then
-	>&2 echo "Docker-machine IP $ip has already been registered"
+	>&2 echo "Docker-machine IP $ip has already been registered. Delete it?"
 	>&2 echo
 	exit 1
 fi
