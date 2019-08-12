@@ -14,7 +14,9 @@ else
 	print "Loaded default config: #{config}\n"
 end
 
+cpus = config["cpus"]
 memory = config["memory"]
+disksize = config["disksize"]
 privateNetIp = config["private_net_ip"]
 syncFolderStartWith = config["sync_folder_start_with"]
 workspaceDirName = config["workspace"]
@@ -39,8 +41,14 @@ Vagrant.configure("2") do |config|
 	}
 
 	config.vm.provider "virtualbox" do |vb|
+		vb.customize [ "modifyvm", :id, "--cpus", cpus ]
 		vb.customize [ "modifyvm", :id, "--memory", memory ]
+		vb.customize [ "modifyvm", :id, "--accelerate3d", "on" ]
 		vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+	end
+
+	unless disksize.nil?
+		config.disksize.size = disksize
 	end
 
 	config.vm.synced_folder hostWorkspace, guestWorkspace, type: "nfs"

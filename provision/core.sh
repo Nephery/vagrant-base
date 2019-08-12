@@ -4,7 +4,7 @@ set -e
 echo
 sudo apt-get update
 
-sudo apt-get install -y maven build-essential libssl-dev libltdl7
+sudo apt-get install -y maven build-essential libssl-dev libltdl7 jq
 
 echo
 echo "Installing Docker..."

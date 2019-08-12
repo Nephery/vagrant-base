@@ -1,3 +1,4 @@
+cpus: 2
 memory: 4096
 private_net_ip: "192.168.68.8"
 sync_folder_start_with: ""
